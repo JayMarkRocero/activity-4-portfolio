@@ -33,36 +33,6 @@ body {
   z-index: 100;
 }
 
-.navbar-brand {
-  font-size: 2.5rem;
-  font-weight: 800;
-  cursor: pointer;
-  background: linear-gradient(90deg, #00f7ff, #9d4edd);
-  -webkit-background-clip: text;
-  -moz-background-clip: text;
-  background-clip: text;
-  color: transparent !important;
-  -webkit-text-fill-color: transparent;
-  -moz-text-fill-color: transparent;
-
-  /* Stronger neon aura */
-  text-shadow: 
-    0 0 10px #00f7ff,
-    0 0 20px #9d4edd,
-    0 0 40px #00f7ff,
-    0 0 80px #9d4edd;
-  transition: all 0.5s ease;
-}
-
-.navbar-brand:hover {
-  transform: scale(1.1);
-  text-shadow: 
-    0 0 15px #00f7ff,
-    0 0 30px #9d4edd,
-    0 0 60px #00f7ff,
-    0 0 120px #9d4edd;
-}
-
 /* ===== NAV TOGGLER ===== */
 .navbar-toggler {
   border: none;
@@ -130,11 +100,6 @@ body {
   }
 }
 
-/* Hide default Bootstrap icon */
-.navbar-toggler-icon {
-  display: none;
-}
-
 /* Custom neon burger lines */
 .toggler-icon {
   display: block;
@@ -151,9 +116,6 @@ body {
 .navbar-toggler:hover .toggler-icon {
   box-shadow: 0 0 10px #00f7ff, 0 0 20px #9d4edd, 0 0 30px #00f7ff;
 }
-
-
-
 
 /* ===== SECTIONS ===== */
 section {
