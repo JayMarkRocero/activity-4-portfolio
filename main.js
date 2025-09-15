@@ -149,6 +149,71 @@ if(chibi){
   });
 }
 
+// ===================== Easter Egg: Secret Lock =====================
+let chibiClickCount = 0;
+const easterAudio = document.getElementById("easter-egg-audio");
+
+if (chibi) {
+  chibi.addEventListener("click", () => {
+    chibiClickCount++;
+
+    if (chibiClickCount === 10) {
+      if (easterAudio) {
+        easterAudio.currentTime = 0;
+        easterAudio.play();
+      }
+
+      // Neon lock message
+      const lockScreen = document.createElement("div");
+      lockScreen.innerHTML = `
+        <h1 style="font-size:3rem; text-align:center; color:#ff4ff8; text-shadow:0 0 15px #ff00ff,0 0 30px #00f7ff;">
+          🔒 You triggered the Easter Egg 😏
+        </h1>
+        <p style="text-align:center; font-size:1.5rem; color:white;">No escape... enjoy the sound 🎶</p>
+      `;
+      lockScreen.style.position = "fixed";
+      lockScreen.style.top = "0";
+      lockScreen.style.left = "0";
+      lockScreen.style.width = "100%";
+      lockScreen.style.height = "100%";
+      lockScreen.style.background = "rgba(0,0,0,0.95)";
+      lockScreen.style.zIndex = "999999";
+      lockScreen.style.display = "flex";
+      lockScreen.style.flexDirection = "column";
+      lockScreen.style.justifyContent = "center";
+      lockScreen.style.alignItems = "center";
+      document.body.appendChild(lockScreen);
+
+      // Function to prevent key presses
+      function preventKeys(e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+
+      // Disable back button
+      history.pushState(null, "", location.href);
+      window.onpopstate = () => {
+        history.pushState(null, "", location.href);
+      };
+
+      // Disable keys (ESC, F12, CTRL+W etc.)
+      document.addEventListener("keydown", preventKeys, true);
+
+      // Disable right-click
+      const preventRightClick = (e) => e.preventDefault();
+      document.addEventListener("contextmenu", preventRightClick);
+
+      // Auto-remove lock screen after 10 seconds
+      setTimeout(() => {
+        lockScreen.remove();
+        window.onpopstate = null;
+        document.removeEventListener("keydown", preventKeys, true);
+        document.removeEventListener("contextmenu", preventRightClick);
+      }, 60000); // 60000ms = 60 seconds
+    }
+  });
+}
+
 // ===== Click on song to play =====
 musicItems.forEach(item => {
   item.addEventListener('click', () => {
