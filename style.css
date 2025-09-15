@@ -915,7 +915,7 @@ span {
   padding: 15px;
   border-radius: 12px;
   display: none;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.8);
+  box-shadow: 0 0 15px #00f7ff, 0 0 25px #9d4edd;
   font-family: Arial, sans-serif;
 }
 
@@ -947,7 +947,7 @@ span {
   background: rgba(106, 90, 205, 0.3); /* bluish hover */
 }
 
-/* 🎶 Highlighted (active) */
+/* Highlighted (active) */
 #music-list li.active {
   background: linear-gradient(90deg, #2a00b7, #42006c);
   color: #fff;
@@ -977,29 +977,51 @@ span {
   color: #1e1e1e;
 }
 
-/* ===== Responsive ===== */
-@media (max-width: 768px) {
-  #chibi-helper {
-    position: fixed;
-    top: calc(100vh - 100px); /* same as bottom:20px */
-    left: calc(100vw - 100px); /* same as right:20px */
-    width: 80px;
-    height: 80px;
-    cursor: grab;
-    z-index: 9999;
+/* ===== CHIBI MUSIC PLAYER ===== */
+@media (max-width: 600px) {
+  #music-list {
+    width: 220px;           /* mas malapad para may space */
+    font-size: 1.3rem;      /* mas maliit na font para readable */
+    padding: 1rem;
+    right: 0;               /* align sa kanan */
+    left: auto;
   }
 
-  #music-list {
-    width: 80%;
-    max-width: 200px;
-    right: 10%;
-    bottom: 100px;
-    padding: 10px;
+  #music-list h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.8rem;
+    text-align: center;
+  }
+
+  #music-list ul {
+    max-height: 150px;      /* limit height para hindi sobrang haba */
+    overflow-y: auto;       /* scroll kung marami */
+    padding: 0;
+    margin: 0;
+  }
+
+  #music-list li {
+    padding: 0.4rem 0.6rem;
+    margin: 0.3rem 0;
+    border-radius: 5px;
+    text-align: center;
+    white-space: nowrap;    /* text stays in one line */
+    overflow: hidden;
+    text-overflow: ellipsis; /* kung mahaba, mag "..." */
+    font-size: 1.2rem;
+  }
+
+  #music-list .controls {
+    display: flex;
+    justify-content: center;
+    gap: 0.8rem;
+    margin-top: 0.8rem;
   }
 
   #music-list button {
-    padding: 2px 4px;
-    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
+    font-size: 1.1rem;
+    border-radius: 6px;
   }
 }
 
