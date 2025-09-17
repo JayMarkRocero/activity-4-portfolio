@@ -157,6 +157,29 @@ if (chibi) {
   chibi.addEventListener("click", () => {
     chibiClickCount++;
 
+    // Warning at 3 clicks
+    if (chibiClickCount === 3) {
+      const warning1 = document.createElement("div");
+      warning1.innerHTML = `
+        <p style="font-size:1.8rem; text-align:center; color:#ffcc00; text-shadow:0 0 10px #ff0000;">
+          ⚠️ Please don't tap me again, something bad might happen...
+        </p>
+      `;
+      stylePopup(warning1);
+    }
+
+    // Warning at 7 clicks
+    if (chibiClickCount === 7) {
+      const warning2 = document.createElement("div");
+      warning2.innerHTML = `
+        <p style="font-size:1.8rem; text-align:center; color:#ff3300; text-shadow:0 0 10px #ff0000;">
+          ⚠️ I told you to stop tapping... you need to go back!
+        </p>
+      `;
+      stylePopup(warning2);
+    }
+
+    // Easter Egg at 10 clicks
     if (chibiClickCount === 10) {
       if (easterAudio) {
         easterAudio.currentTime = 0;
@@ -184,7 +207,7 @@ if (chibi) {
       lockScreen.style.alignItems = "center";
       document.body.appendChild(lockScreen);
 
-      // Function to prevent key presses
+      // Prevent key presses
       function preventKeys(e) {
         e.preventDefault();
         e.stopPropagation();
@@ -203,16 +226,36 @@ if (chibi) {
       const preventRightClick = (e) => e.preventDefault();
       document.addEventListener("contextmenu", preventRightClick);
 
-      // Auto-remove lock screen after 10 seconds
+      // Auto-remove lock screen after 60 seconds
       setTimeout(() => {
         lockScreen.remove();
         window.onpopstate = null;
         document.removeEventListener("keydown", preventKeys, true);
         document.removeEventListener("contextmenu", preventRightClick);
-      }, 60000); // 60000ms = 60 seconds
+      }, 60000);
     }
   });
 }
+
+// Helper function for warnings
+function stylePopup(element) {
+  element.style.position = "fixed";
+  element.style.top = "20px";
+  element.style.left = "50%";
+  element.style.transform = "translateX(-50%)";
+  element.style.background = "rgba(0,0,0,0.8)";
+  element.style.padding = "15px 25px";
+  element.style.borderRadius = "12px";
+  element.style.zIndex = "999999";
+  element.style.boxShadow = "0 0 15px #ff0000";
+  document.body.appendChild(element);
+
+  // Auto remove after 3 seconds
+  setTimeout(() => {
+    element.remove();
+  }, 3000);
+}
+
 
 // ===== Click on song to play =====
 musicItems.forEach(item => {
