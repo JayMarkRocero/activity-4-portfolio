@@ -190,7 +190,7 @@ if (chibi) {
       const lockScreen = document.createElement("div");
       lockScreen.innerHTML = `
         <h1 style="font-size:3rem; text-align:center; color:#ff4ff8; text-shadow:0 0 15px #ff00ff,0 0 30px #00f7ff;">
-          🔒 You triggered the Easter Egg 😏
+          🔒Ang kulit mo kase yan tuloy, You triggered the Easter Egg 😏
         </h1>
         <p style="text-align:center; font-size:1.5rem; color:white;">No escape... enjoy the sound 🎶</p>
       `;
